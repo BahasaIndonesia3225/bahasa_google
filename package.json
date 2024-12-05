@@ -1,0 +1,28 @@
+{
+  "private": true,
+  "author": "liyujian3225 <icanflyanywhere@126.com>",
+  "scripts": {
+    "dev": "umi dev",
+    "build": "umi build",
+    "postinstall": "umi setup",
+    "setup": "umi setup",
+    "start": "npm run dev"
+  },
+  "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
+    "@vis.gl/react-google-maps": "^1.4.0",
+    "antd-mobile": "^5.32.1",
+    "antd-mobile-icons": "^0.3.0",
+    "dayjs": "^1.11.9",
+    "js-base64": "^3.7.7",
+    "umi": "^4.0.79",
+    "video.js": "^8.20.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "@umijs/plugins": "^4.0.81",
+    "typescript": "^5.2.2",
+    "umi-request": "^1.4.0"
+  }
+}
