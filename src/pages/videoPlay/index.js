@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useLocation } from 'umi';
-import { Image } from 'antd-mobile'
-import videojs from "video.js";
 import "video.js/dist/video-js.css";
+import videojs from "video.js";
 import "./index.less"
 
 export default () => {
@@ -11,7 +10,6 @@ export default () => {
 
   const videoRef = useRef(null);
   const playerRef = useRef(null);
-  const [option, setOptopm] = useState({});
 
   const onReadyPlay = (palyer) => {
     videoRef.current = palyer
@@ -19,7 +17,7 @@ export default () => {
   }
 
   const init = () => {
-    let _option = {
+    let option = {
       controls: true,
       autoplay: false,//加载完成是否自动播放
       loop: false,//视频播放结束后，是否循环播放
@@ -40,11 +38,10 @@ export default () => {
         ]
       }
     }
-    setOptopm(_option);
     if (!playerRef.current) {
       const videoElement = videoRef.current;
       if (!videoElement) return;
-      const player = playerRef.current = videojs(videoElement, _option, () => {});
+      const player = playerRef.current = videojs(videoElement, option, () => {});
       onReadyPlay(player)
     }
   }
@@ -57,7 +54,8 @@ export default () => {
       </p>
       <div className="coursePlayArea">
         <video
-          style={{ width: "100%", height: 300 }} ref={videoRef}
+          ref={videoRef}
+          style={{ width: "100%", height: 300 }}
           className="video-js vjs-big-play-centered">
           <source src={url} type="video/mp4" />
         </video>

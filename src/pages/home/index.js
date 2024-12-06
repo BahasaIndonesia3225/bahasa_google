@@ -1,28 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import { Space, Mask, SpinLoading, Modal, Image, Input, Card, Button } from 'antd-mobile';
-import { AntOutline, RightOutline } from 'antd-mobile-icons';
-import { useNavigate } from 'umi';
-import { Base64 } from 'js-base64';
-import dayjs from 'dayjs'
+import { InformationCircleOutline, RightOutline } from 'antd-mobile-icons';
+import { useNavigate, useModel } from 'umi';
 import './index.less';
 
-export default () => {
+const home = () => {
   let navigate = useNavigate();
-  let password =  dayjs().format("YYYYMMDD");
-  const encode = Base64.encode(password); // 编码
-
   const [value, setValue] = useState('')
   const [visible, setVisible] = useState(true);
   useEffect(() => {
     setTimeout(() => { setVisible(false) }, 500);
   }, [])
 
+  const { initialState } = useModel('@@initialState');
   const checkPassword = () => {
-    if (value === encode) {
-      navigate("/courseList", { replace: false })
+    if (value === initialState.encryptionKey) {
+      navigate("/courseList", { replace: false });
+      localStorage.setItem("encryptionKey", value);
     } else {
       Modal.alert({
-        content: '登录密钥错误，请联系客服获取',
+        content: '密钥错误，请联系客服获取',
         onConfirm: () => {},
       })
     }
@@ -47,19 +44,23 @@ export default () => {
         className="logoCard"
         src='/bahasaGoogle/image/logo.png'
       />
+      <Image
+        style={{opacity: 0}}
+        src='/bahasaGoogle/image/WechatIMG4809.jpg'
+      />
       <Card
         className="passwordCard"
         title={
           <div style={{ fontWeight: 'normal' }}>
-            <AntOutline style={{ marginRight: '4px', color: '#1677ff' }} />
-            密钥每天更新一次，请联系客户获取。
+            <InformationCircleOutline style={{ marginRight: '4px', color: '#1677ff' }} />
+            密钥每日重置，请联系客服获取。
           </div>
         }
-        extra={<RightOutline />}
       >
         <div className="content">
           <Input
             placeholder='请输入登录密钥'
+            clearable={true}
             value={value}
             onChange={val => {
               setValue(val)
@@ -87,3 +88,5 @@ export default () => {
     </div>
   )
 }
+
+export default home

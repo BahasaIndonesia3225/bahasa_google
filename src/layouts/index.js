@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavBar, Image, WaterMark } from 'antd-mobile'
-import { useNavigate, useRouteProps, Outlet, connect } from 'umi';
+import { useNavigate, useRouteProps, Outlet } from 'umi';
 import { SetOutline } from 'antd-mobile-icons'
 import "./index.less"
 
@@ -41,8 +41,4 @@ const Layout = (props) => {
   );
 }
 
-export default connect((state) => {
-  return {
-    waterMarkContent: state.user.waterMarkContent,
-  }
-})(Layout)
+export default Layout

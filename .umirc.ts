@@ -19,6 +19,10 @@ export default defineConfig({
     { path: "/videoPlay", component: "videoPlay", name: '课程观看' },
   ],
   alias: {},
-  plugins: ['@umijs/plugins/dist/dva'],
-  dva: {}
+  plugins: [
+    '@umijs/plugins/dist/initial-state',
+    '@umijs/plugins/dist/model',
+  ],
+  initialState: {},
+  model: {},
 });
