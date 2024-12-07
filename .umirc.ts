@@ -13,10 +13,30 @@ export default defineConfig({
     '@primary-color': '#1DA57A'
   },
   routes: [
-    { path: "/", component: "home" },
-    { path: "/home", component: "home" },
-    { path: "/courseList", component: "courseList", name: '课程列表' },
-    { path: "/videoPlay", component: "videoPlay", name: '课程观看' },
+    {
+      path: "/",
+      component: "home"
+    },
+    {
+      path: "/home",
+      component: "home"
+    },
+    {
+      path: "/courseList",
+      component: "courseList",
+      name: '课程列表',
+      wrappers: [
+        '@/wrappers/auth',
+      ],
+    },
+    {
+      path: "/videoPlay",
+      component: "videoPlay",
+      name: '课程观看',
+      wrappers: [
+        '@/wrappers/auth',
+      ],
+    },
   ],
   alias: {},
   plugins: [

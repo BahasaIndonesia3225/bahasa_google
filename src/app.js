@@ -8,20 +8,3 @@ const encryptionKey = Base64.encode(dateTime);
 export function getInitialState() {
   return { encryptionKey }
 }
-
-//路由监听
-import { Toast } from 'antd-mobile'
-export function onRouteChange({ location, clientRoutes, routes, action, basename, isFirst }) {
-  const { pathname } = location;
-  if(pathname === '/courseList' || pathname === '/videoPlay') {
-    const encryptionKey_ = localStorage.getItem('encryptionKey');
-    if (!encryptionKey_ || (encryptionKey_ && encryptionKey_ !== encryptionKey)) {
-      Toast.show({
-        content: '密钥错误，请联系客服获取',
-        afterClose: () => {
-          window.location.href = "/#/home";
-        }
-      })
-    }
-  }
-}
